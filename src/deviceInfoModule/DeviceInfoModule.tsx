@@ -1,8 +1,10 @@
 import {View, Text, NativeModules} from 'react-native';
-import React, {FC, useEffect} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 
 const DeviceInfoModule: FC = () => {
   const {DeviceInfoModule} = NativeModules;
+
+  const [deviceInfo, setDeviceInfo] = useState({});
 
   useEffect(() => {
     getDeviceInfo();
@@ -11,15 +13,21 @@ const DeviceInfoModule: FC = () => {
   const getDeviceInfo = async () => {
     try {
       const deviceInfo = await DeviceInfoModule.getDeviceInfo();
-      console.log('deviceInfo: ', deviceInfo);
+      setDeviceInfo(deviceInfo);
     } catch (error) {
       console.error(error);
     }
   };
 
   return (
-    <View>
-      <Text>DeviceInfoModule</Text>
+    <View style={{flex: 1, padding: 10}}>
+      {Object.keys(deviceInfo).map(key => (
+        <Text
+          key={key}
+          style={{fontSize: 16, marginBottom: 5, textTransform: 'capitalize', color:'black'}}>
+          {key}: {deviceInfo[key]}
+        </Text>
+      ))}
     </View>
   );
 };
