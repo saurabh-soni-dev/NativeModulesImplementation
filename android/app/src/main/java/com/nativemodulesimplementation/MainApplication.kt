@@ -1,4 +1,7 @@
 package com.nativemodulesimplementation
+import com.nativemodulesimplementation.CameraPackage
+import com.nativemodulesimplementation.DeviceInfoPackage
+import com.nativemodulesimplementation.BackgroundTaskPackage
 
 import android.app.Application
 import com.facebook.react.PackageList
@@ -19,6 +22,9 @@ class MainApplication : Application(), ReactApplication {
             PackageList(this).packages.apply {
               // Packages that cannot be autolinked yet can be added manually here, for example:
               // add(MyReactNativePackage())
+                add(CameraPackage())
+                add(DeviceInfoPackage())
+                add(BackgroundTaskPackage())
             }
 
         override fun getJSMainModuleName(): String = "index"
