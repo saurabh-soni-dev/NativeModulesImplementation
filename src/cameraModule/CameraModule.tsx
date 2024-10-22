@@ -31,7 +31,7 @@ const CameraModule: FC = () => {
         const result = await CameraModule.openCamera();
         if (result.uri) {
           setImageUri(result.uri); // Set the captured image URI to the state
-          console.log('Image URI: ', result);
+          console.log('Image URI:: ', result);
         }
       } else {
         console.log('Camera permission denied');
